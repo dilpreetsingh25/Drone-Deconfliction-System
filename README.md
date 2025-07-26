@@ -1,29 +1,18 @@
 # Drone Flight Conflict Detection and Visualization System
 
 <img width="800" height="600" alt="image" src="https://github.com/user-attachments/assets/765c7d3e-8c38-4cb6-9d7f-1793f18051ba" />
+<p align="center"></p>
+The Drone Flight Conflict Detection and Visualization System is an advanced safety solution designed to prevent mid-air collisions in shared airspace. As drone operations rapidly expand across industries like delivery, surveying, and emergency response, this system provides critical infrastructure for safely coordinating multiple autonomous flights. By analyzing planned trajectories in both space and time dimensions, the system identifies potential conflicts before takeoff, enabling operators to modify flight plans proactively rather than reacting to emergencies.
 
-A comprehensive system for detecting and visualizing potential conflicts between drone flight paths in shared airspace. This solution performs spatio-temporal analysis to ensure safe drone operations by identifying conflicts **before** they occur.
+[Drone Confliction Simulation.webm](https://github.com/user-attachments/assets/b1e978a1-0239-43f7-bca8-a627a6574c85)
+<p align="center"></p>
 
 ## ✈️ Key Features
 
 - **4D Conflict Detection**  
-  Detects conflicts in **3D space + time** to ensure real-time safety awareness.
-
-- **Safety Buffer**  
-  Configurable minimum separation distance between flight paths.
-
-- **Detailed Reporting**  
-  Outputs conflict details including:
-  - Location (X, Y, Z)
-  - Time of conflict
-  - Involved drone IDs
-
-- **Visualization**
-  - Generates **3D static plots** of flight paths
-  - Creates **4D animations** (space + time) using Matplotlib and FFmpeg
-
-- **User-Friendly Interface**  
-  Enables interactive mission configuration and simulation.
+- **Configurable Safety Buffers**  
+- **Detailed Conflict Reporting**
+- **Interactive 4D Visualization**  
 
 ---
 
@@ -32,29 +21,76 @@ A comprehensive system for detecting and visualizing potential conflicts between
 ### ✅ Prerequisites
 
 - Python **3.7+**
-- **FFmpeg** (required for animation export)
+- FFmpeg (required for animation export)
+- NumPY  (Vector math and numerical computations)
+- Matplotlib  (2D/3D visualization and animation)
 
-Install FFmpeg:
+### 🐧 Ubuntu (Debian-based)
 
-**Ubuntu/Debian:**
+**1. Install Python**
 ```bash
-sudo apt install ffmpeg matplotlib
+sudo apt update
+sudo apt install python3 python3-pip
 ```
-**Window:**
+**2. Check Python Version**
 ```bash
-conda install ffmpeg matplotlib
+python --version   # Should show Python 3.7 or higher
+sudo apt install ffmpeg python3-matplotlib python3-numpy
 ```
-**Mac:**
+**3. Install FFmpeg, Matplotlib, NumPy**
 ```bash
-sudo apt install ffmpeg matplotlib
+sudo apt install ffmpeg python3-matplotlib python3-numpy
 ```
-**Clone the repository:**
+
+### 🪟 Windows
+
+**1. Install Python**
+- Download the installer from: https://www.python.org/downloads/windows/
+- During installation, make sure to check the box that says: Add Python to PATH.
+
+**2. Check Python Version (in Command Prompt)**
+```cmd
+python --version   # Should show Python 3.7 or higher
+```
+**3. Install FFmpeg**
+- Download from: https://ffmpeg.org/download.html
+- Extract it and add the bin folder to your system's PATH.
+
+**4. Install Matplotlib & NumPy (in Command Prompt)**
+```cmd
+pip install matplotlib numpy
+```
+
+### 🍎 MacOS
+
+**1. Install Python (if not already installed)**
+- Use Homebrew:
+```bash
+brew install python
+```
+
+**2. Check Python Version**
+```bash
+python --version   # Should show Python 3.7 or higher
+```
+**3. Install FFmpeg**
+```bash
+brew install ffmpeg
+```
+
+**4. Install Matplotlib & NumPy**
+```bash
+pip3 install matplotlib numpy
+```
+
+### 📂 Clone the repository
+
 ```bash
 git clone https://github.com/dilpreetsingh25/Drone-Deconfliction-System.git
 ```
 ---
 
-## 🛠️ Usage
+## ⚙️ Usage
 
  Run the system with:
 ```bash
@@ -63,18 +99,82 @@ python drone_deconfliction.py
 ```
 ### Follow the interactive prompts:
 #### 1. Enter primary mission details:
-- Number of waypoints
-- X, Y, Z coordinates for each waypoint
-- Mission duration in minutes
+```terminal
+==================================================
+Drone Deconfliction System
+==================================================
+Created 3 simulated flights in memory
+
+==================================================
+Primary Mission Configuration
+==================================================
+Enter the number of mission waypoints: 3
+
+Waypoint 1:
+  X coordinate (integer): 0
+  Y coordinate (integer): 0
+  Z coordinate (integer): 0
+
+Waypoint 2:
+  X coordinate (integer): 100
+  Y coordinate (integer): 100
+  Z coordinate (integer): 50
+
+Waypoint 3:
+  X coordinate (integer): 300
+  Y coordinate (integer): 250
+  Z coordinate (integer): 80
+
+Enter mission time window
+  Start time will be current time: 2025-07-26 12:43:33.895631
+Enter mission duration in minutes: 10
+  End time: 2025-07-26 12:53:33.895631
+
+```
 #### 2. View conflict analysis results:
 - Clearance status
 - Detailed conflict report (if any conflicts detected)
 
+```terminal
+  
+==================================================
+Deconfliction Results
+==================================================
+Conflict Detected: 1 conflict(s) found
+
+Conflict Report:
+==================================================
+Conflict 1:
+  Time: 2025-07-26 12:48:07.968931
+  Location: (126.64, 119.98, 54.00)
+  With Drone: drone3
+  Minimum Distance: 8.34m
+
+```
+
 #### 3. Generate visualizations:
 
 - 3D static plot of all flight paths
+```bash
+==================================================
+Generating Visualizations
+==================================================
+Saved 3D plot to drone_paths.png
+```
 - 4D animation showing temporal evolution (with configurable FPS)
+```bash
+Enter animation frame rate (FPS, 5-30): 10
+*c* argument looks
+--
+--
+--
+-- RGB or RGBA value for all points.
+Saved 4D animation to drone_animation.mp4
 
+Simulation complete!
+- 3D plot saved to: drone_paths.png
+- 4D animation saved to: drone_animation.mp4
+```
 
 
 ## ✅ Example Scenerios
@@ -121,4 +221,5 @@ Conflict 3:
 ```
 ---
 ## System Architecture
-<img width="300" height="500" alt="deepseek_mermaid_20250725_231b34" src="https://github.com/user-attachments/assets/59f0486b-2463-4929-b567-3247802c4e40" />
+<img width="500" height="1200" alt="deepseek_mermaid_20250726_1e839a" src="https://github.com/user-attachments/assets/31e6e90c-0800-4f3e-bcb0-a50065cdb202" />
+
